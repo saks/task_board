@@ -22,12 +22,12 @@ $(function() {
   function appendCardToDom(card) {
     var html = $(renderCard(card));
     html.data('card', card);
-    $('.column.todo').append(html);
+    $('.column.' + card.state).append(html);
   }
 
   function createCard() {
     var data = newCardPopup.find('form').serializeArray(),
-        card = new Card(data[0].value, data[1].value);
+        card = new Card({name: data[0].value, type: data[1].value});
 
     Card.store(card);
     appendCardToDom(card);
@@ -39,7 +39,7 @@ $(function() {
   CardsController = TaskBoard.CardsController = {
     addNewCard:      addNewCard,
     appendCardToDom: appendCardToDom,
-    createCard:      createCard,
+    createCard:      createCard
   };
 
 });

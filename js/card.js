@@ -7,16 +7,28 @@
   /**
    * @constructor
    */
-  var Card = TaskBoard.Card = function(name, type, id) {
-    this.name = name;
-    this.type = type;
+  var Card = TaskBoard.Card = function(attributes) {
+    var id = attributes.id;
 
-    if ('undefined' === typeof id)
-      id = ++UUID
-    else
+    this.name = attributes.name;
+    this.type = attributes.type;
+
+    if ('id' in attributes)
       UUID = id + 1
+    else
+      id = ++UUID;
 
     this.id = id;
+
+    if ('state' in attributes)
+      this.state = attributes.state
+    else
+      this.state = 'todo';
+  }
+
+  Card.prototype.updateState = function(newState) {
+    this.state = newState;
+    Card.store(this);
   }
 
   /**
@@ -49,7 +61,7 @@
         data  = __parse__(value);
         id    = parseInt(key.slice(keyPrefix.length, key.length), 10);
 
-        cards.push( new Card(data[0], data[1], id) );
+        cards.push( new Card({name: data[0], type: data[1], id: id, state: data[2]}) );
       }
     }
 
@@ -57,7 +69,7 @@
   }
 
   function __dump__(instance) {
-    return [instance.name, instance.type].join(fieldSeparator);
+    return [instance.name, instance.type, instance.state].join(fieldSeparator);
   }
 
   function __parse__(string) {
