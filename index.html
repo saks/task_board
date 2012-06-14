@@ -1,0 +1,107 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]--> <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]--> <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+  <link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="css/print.css" media="print" rel="stylesheet" type="text/css" />
+  <!--[if IE]>
+      <link href="css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script id="card-template" type="text/x-handlebars-template">
+    <div class="card well {{type}}">
+      # <strong>{{id}}</strong>
+      <span class="card-name" title="{{name}}">{{name}}</span>
+    </div>
+  </script>
+</head>
+<body>
+
+  <!-- The missing protocol means that it will match the current protocol, either http or https. If running locally, we use the local jQuery. -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+  <script src="js/libs/jquery-ui-1.8.21.custom.min.js"></script>
+  <!-- <script src="js/libs/bootstrap.min.js"></script> -->
+  <script src="js/libs/bootstrap-modal.js"></script>
+  <script src="js/libs/mustache.js"></script>
+  <script src="js/libs/handlebars-1.0.0.beta.6.js"></script>
+  <script src="js/app.js"></script>
+
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand">Task Board</a>
+        <ul class="nav">
+          <li><a href="#new_card_popup" data-toggle="modal"><i class="icon-plus icon-white"></i>Create New</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="board" class="container">
+    <div class="row-fluid">
+      <div class="span12 columns-header">
+        <div class="span4 th"><h3>ToDo</h3></div>
+        <div class="span4 th"><h3>In Progress</h3></div>
+        <div class="span4 th"><h3>Done</h3></div>
+      </div>
+      <div class="span12 hr"></div>
+      <div class="span12 columns">
+        <div class="span4 column todo">
+          <!-- <div class="card well"> -->
+          <!--   #<span class="card-id">1</span> -->
+          <!--   <span class="card-name">login page</span> -->
+          <!-- </div> -->
+          <!-- <div class="card well"> -->
+          <!--   #<span class="card-id">1</span> -->
+          <!--   <span class="card-name">login page</span> -->
+          <!-- </div> -->
+        </div>
+        <div class="span4 column">
+          <!-- <div class="card well bug"> -->
+          <!--   #<span class="card-id">1</span> -->
+          <!--   <span class="card-name">js error on setting page page bla-bla bla-bla bla-bla</span> -->
+          <!-- </div> -->
+        </div>
+        <div class="span4 column"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="new_card_popup" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Add New Card</h3>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="control-group name">
+          <label class="control-label">Card name:</label>
+          <div class="controls">
+            <input type="text" class="span3 new-card-name" placeholder="Type something…" name="name"></input>
+            <span id="name_validation_message" class="hide help-inline">Please fill the name field</span>
+          </div>
+        </div>
+        <label class="radio"><input type="radio" name="type" value="task" checked="true">task</input></label>
+        <label class="radio"><input type="radio" name="type" value="bug">bug</input></label>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+      <a href="#" class="btn btn-primary create-new-task">Create</a>
+    </div>
+  </div>
+</body>
+</html>

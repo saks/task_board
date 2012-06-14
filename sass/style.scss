@@ -1,0 +1,46 @@
+@import "compass/css3";
+
+body {
+  background: none repeat scroll 0 0 #2F2F2F;
+  color: #C6C6C6;
+}
+
+@mixin horizontal-rule-top-dark {
+  @include box-shadow(rgba(#fff, .07) 0 1px 0 inset);
+  border-top: 1px solid #121212;
+}
+
+.navbar a.brand { color: #FFF; }
+.nav li a { color: #FFF; }
+
+#board {
+  .columns-header .th { text-align: center; }
+
+  .hr {
+    @include horizontal-rule-top-dark;
+  }
+
+  .column {
+    min-height: 200px; // to siplify dropping
+  }
+}
+
+.card {
+  color: black;
+  height: 36px;
+  overflow: hidden;
+
+  &.task {
+
+  }
+
+  &.bug {
+    background-color: #C7874A;
+  }
+}
+
+.ui-state-highlight {
+  background-color: gray;
+  opacity: 0.8;
+}
+
