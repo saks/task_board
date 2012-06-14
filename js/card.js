@@ -1,5 +1,8 @@
 (function(globalNamespace) {
-  var TaskBoard = globalNamespace.TaskBoard, Card, UUID = 0;
+  var TaskBoard        = globalNamespace.TaskBoard, Card,
+      UUID             = 0,
+      fieldSeparator   = '$$$',
+      storageNamespace = 'cards';
 
   /**
    * @constructor
@@ -22,8 +25,8 @@
   Card.store = function(instance) {
     if ( !('localStorage' in window) ) return
 
-    var key   = [this.storageNamespace, instance.id].join(':'),
-        value = this.__dump__(instance);
+    var key   = [storageNamespace, instance.id].join(':'),
+        value = __dump__(instance);
 
     window.localStorage.setItem(key, value);
   }
@@ -32,7 +35,7 @@
    * @public
    */
   Card.loadSavedCards = function() {
-    var keyPrefix = this.storageNamespace + ':', data, value, key, id, cards = [];
+    var keyPrefix = storageNamespace + ':', data, value, key, id, cards = [];
 
 
     for (i = 0; i <= localStorage.length - 1; i++) {
@@ -43,7 +46,7 @@
 
         if (null === value) continue;
 
-        data  = this.__parse__(value);
+        data  = __parse__(value);
         id    = parseInt(key.slice(keyPrefix.length, key.length), 10);
 
         cards.push( new Card(data[0], data[1], id) );
@@ -53,15 +56,12 @@
     return cards
   }
 
-  Card.fieldSeparator = '$$$';
-  Card.storageNamespace = 'cards';
-
-  Card.__dump__ = function(instance) {
-    return [instance.name, instance.type].join(this.fieldSeparator);
+  function __dump__(instance) {
+    return [instance.name, instance.type].join(fieldSeparator);
   }
 
-  Card.__parse__ = function(string) {
-    return string.split(this.fieldSeparator);
+  function __parse__(string) {
+    return string.split(fieldSeparator);
   }
 
 })(window);
