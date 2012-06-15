@@ -1,5 +1,5 @@
 $(function() {
-  var TaskBoard           = window.TaskBoard, CardController,
+  var TaskBoard           = window.TaskBoard, CardsController,
     nameValidationMessage = $('#name_validation_message'),
     newCardPopup          = $('#new_card_popup'),
     renderCard            = Handlebars.compile($("#card-template").html()),
