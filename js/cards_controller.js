@@ -29,7 +29,7 @@ $(function() {
     var data = newCardPopup.find('form').serializeArray(),
         card = new Card({name: data[0].value, type: data[1].value});
 
-    Card.store(card);
+    card.save();
     appendCardToDom(card);
 
     newCardPopup.find('form')[0].reset();

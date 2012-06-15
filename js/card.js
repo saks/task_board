@@ -14,7 +14,7 @@
     this.type = attributes.type;
 
     if ('id' in attributes)
-      UUID = id + 1
+      UUID = id
     else
       id = ++UUID;
 
@@ -28,7 +28,12 @@
 
   Card.prototype.updateState = function(newState) {
     this.state = newState;
-    Card.store(this);
+    this.save()
+  }
+
+  Card.prototype.save = function() {
+    Card.store(this)
+    return this
   }
 
   /**
@@ -46,7 +51,9 @@
   /**
    * @public
    */
-  Card.loadSavedCards = function() {
+  Card.loadLocallySavedCards = function() {
+    if (!window.localStorage) return
+
     var keyPrefix = storageNamespace + ':', data, value, key, id, cards = [];
 
 
@@ -67,6 +74,25 @@
 
     return cards
   }
+
+  Card.loadSavedCards = function() {
+    var index = {},
+        local = Card.loadLocallySavedCards(),
+        fromFile = window.StoredCards;
+
+    // cards from local storage take presedence
+    for (var i = 0, card; i < fromFile.length; i++) {
+      card = fromFile[i];
+      index[card.id] = new Card(card).save();
+    }
+
+    for (var i = 0, card; i < local.length; i++) {
+      card = local[i];
+      index[card.id] = new Card(card).save();
+    }
+
+    return index
+  };
 
   function __dump__(instance) {
     return [instance.name, instance.type, instance.state].join(fieldSeparator);

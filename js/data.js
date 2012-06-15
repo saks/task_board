@@ -1,0 +1,1 @@
+var StoredCards = [{"id":1,"name":"login page","state":"todo","type":"task"},{"id":4,"name":"main page","state":"todo","type":"task"},{"id":8,"name":"js error on setting page","state":"in-progress","type":"bug"},{"id":9,"name":"install package","type":"task","state":"done"}];
