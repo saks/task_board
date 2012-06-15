@@ -1,0 +1,48 @@
+/* line 3, ../sass/style.scss */
+body {
+  background: none repeat scroll 0 0 #2F2F2F;
+  color: #C6C6C6;
+}
+
+/* line 13, ../sass/style.scss */
+.navbar a.brand {
+  color: #FFF;
+}
+
+/* line 14, ../sass/style.scss */
+.nav li a {
+  color: #FFF;
+}
+
+/* line 17, ../sass/style.scss */
+#board .columns-header .th {
+  text-align: center;
+}
+/* line 19, ../sass/style.scss */
+#board .hr {
+  -webkit-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0 inset;
+  -moz-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0 inset;
+  border-top: 1px solid #121212;
+}
+/* line 23, ../sass/style.scss */
+#board .column {
+  min-height: 200px;
+}
+
+/* line 28, ../sass/style.scss */
+.card {
+  color: black;
+  height: 36px;
+  overflow: hidden;
+}
+/* line 37, ../sass/style.scss */
+.card.bug {
+  background-color: #C7874A;
+}
+
+/* line 42, ../sass/style.scss */
+.ui-state-highlight {
+  background-color: gray;
+  opacity: 0.8;
+}
