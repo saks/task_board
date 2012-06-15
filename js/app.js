@@ -26,6 +26,5 @@ $(function() {
   bindDomEvents();
 
   var savedCards = Card.loadSavedCards();
-  console.log(savedCards)
   for (var id in savedCards) CardsController.appendCardToDom(savedCards[id]);
 });
